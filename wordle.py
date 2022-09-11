@@ -25,6 +25,6 @@ def main():
                 clues += '⬜'
         print(clues)
         guesses += 1
-    print(str(guesses) + " guesses\n")
+    print(str(guesses) + " guesses")
 main()
     
