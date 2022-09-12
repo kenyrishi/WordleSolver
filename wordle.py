@@ -18,11 +18,11 @@ def main():
 
         for i in range(5):
             if user_guess[i] == word[i]:
-                clues += '🟩'
+                clues += '3' #'🟩'
             elif user_guess[i] in word:
-                clues += '🟨'
+                clues += '2' #'🟨'
             else:
-                clues += '⬜'
+                clues += '1' #'⬜'
         print(clues)
         guesses += 1
     print(str(guesses) + " guesses")
