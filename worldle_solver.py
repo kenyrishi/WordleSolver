@@ -40,12 +40,13 @@ def find_best_word(green, yellow, white, possible_words):
     best_word = ""
     best_count = 0
     for possible_best in possible_words:
+        print(possible_best)
         average_removed_sum = 0
         for possible_solution in possible_words:
             total_removed = 0
             new_g = green
-            new_y = yellow
-            new_w = white
+            new_y = list(yellow)
+            new_w = list(white)
             result = getClues(possible_best, possible_solution)
             for i in range(5):
                 if result[i] == "3":
@@ -58,10 +59,11 @@ def find_best_word(green, yellow, white, possible_words):
             for w in possible_words:
                 if not isValid(w, new_g, new_y, new_w):
                     total_removed += 1
-            average_removed_sum += total_removed/len(possible_solution)
+            average_removed_sum += total_removed/len(possible_words)
         if best_word == "" or average_removed_sum > best_count:
             best_word = possible_best
             best_count = average_removed_sum
+        print(average_removed_sum/len(possible_words))
     return best_word
 
     
