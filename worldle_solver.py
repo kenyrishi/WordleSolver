@@ -2,18 +2,28 @@
 
 from numpy import short
 
+def getClues(guess, word):
+    clues = ""
+    for i in range(5):
+            if guess[i] == word[i]:
+                clues += '3' #'🟩'
+            elif guess[i] in word:
+                clues += '2' #'🟨'
+            else:
+                clues += '1' #'⬜'
+    return clues
 
 def isValid(word, green, yellow, white):
-    for i in green:
+    for i in range(len(green)):
         if green[i] != "?" and green[i] != word[i]:
             return False
     
     for i in yellow:
-        if yellow[i] not in word:
+        if i not in word:
             return False
 
     for i in white:
-        if white[i] in word:
+        if i in word:
             return False
     
     return True
@@ -27,7 +37,36 @@ def shorten_list(green, yellow, white, possible_words):
         
 
 def find_best_word(green, yellow, white, possible_words):
-    pass
+    best_word = ""
+    best_count = 0
+    for possible_best in possible_words:
+        average_removed_sum = 0
+        for possible_solution in possible_words:
+            total_removed = 0
+            new_g = green
+            new_y = yellow
+            new_w = white
+            result = getClues(possible_best, possible_solution)
+            for i in range(5):
+                if result[i] == "3":
+                    new_g[i] = possible_best[i]
+                elif result[i] == "2":
+                    new_y.append(possible_best[i])
+                elif result[i] == "1":
+                    new_w.append(possible_best[i])
+
+            for w in possible_words:
+                if not isValid(w, new_g, new_y, new_w):
+                    total_removed += 1
+            average_removed_sum += total_removed/len(possible_solution)
+        if best_word == "" or average_removed_sum > best_count:
+            best_word = possible_best
+            best_count = average_removed_sum
+    return best_word
+
+    
+
+
 
 def solver():
     green = ["?","?","?","?","?"]
@@ -63,5 +102,4 @@ def solver():
                 white.append(best_word[i])
         
 
-
-
+solver()
