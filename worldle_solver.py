@@ -39,6 +39,14 @@ def shorten_list(green, yellow, white, possible_words):
 def find_best_word(green, yellow, white, possible_words):
     best_word = ""
     best_count = 0
+    clues = {}
+    for i in possible_words:
+        c2 = {}
+        for j in possible_words:
+            result = getClues(i,j)
+            c2[j] = result
+        clues[i] = c2
+
     for possible_best in possible_words:
         print(possible_best)
         average_removed_sum = 0
@@ -47,7 +55,7 @@ def find_best_word(green, yellow, white, possible_words):
             new_g = green
             new_y = list(yellow)
             new_w = list(white)
-            result = getClues(possible_best, possible_solution)
+            result = clues[possible_best][possible_solution]
             for i in range(5):
                 if result[i] == "3":
                     new_g[i] = possible_best[i]
