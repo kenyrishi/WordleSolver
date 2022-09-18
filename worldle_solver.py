@@ -29,6 +29,8 @@ def isValid(word, green, yellow, white):
     return True
 
 def shorten_list(green, yellow, white, possible_words):
+    if green=="?????" and yellow==[] and white==[]:
+        return possible_words
     new_list = []
     for i in possible_words:
         if isValid(i, green, yellow, white):
