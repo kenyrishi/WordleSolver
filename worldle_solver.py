@@ -113,5 +113,7 @@ def solver():
             elif result[i] == "1":
                 white.append(best_word[i])
         
+def main():
+    solver()
 
-solver()
+main()
