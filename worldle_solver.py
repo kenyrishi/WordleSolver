@@ -59,11 +59,11 @@ def find_best_word(green, yellow, white, possible_words):
             new_w = list(white)
             result = clues[possible_best][possible_solution]
             for i in range(5):
-                if result[i] == "3":
+                if result[i] == "2":
                     new_g[i] = possible_best[i]
-                elif result[i] == "2":
-                    new_y.append(possible_best[i])
                 elif result[i] == "1":
+                    new_y.append(possible_best[i])
+                elif result[i] == "0":
                     new_w.append(possible_best[i])
 
             for w in possible_words:
@@ -102,15 +102,15 @@ def solver():
         while len(result) != 5:
             result = input("Type in valid results: \n")
         
-        if result == "33333":
+        if result == "22222":
             solved = True
         
         for i in range(len(result)):
-            if result[i] == "3":
+            if result[i] == "2":
                 green[i] = best_word[i]
-            elif result[i] == "2":
-                yellow.append(best_word[i])
             elif result[i] == "1":
+                yellow.append(best_word[i])
+            elif result[i] == "0":
                 white.append(best_word[i])
         
 def main():
