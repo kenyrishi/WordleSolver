@@ -25,6 +25,9 @@ def main():
                 clues += '0' #'⬜'
         print(clues)
         guesses += 1
-    print(str(guesses) + " guesses")
+    print(str(guesses) + " guesses taken")
+    x = input("Would you like to play again?")
+    if x == "y" or x == "yes":
+        main()
 main()
     
